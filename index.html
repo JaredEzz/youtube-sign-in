@@ -282,7 +282,7 @@
         // Collect Data (Mock)
         const data = {
             name: document.getElementById('full-name').value,
-            channel: document.getElementById('channel-name').innerText,
+            channel: document.getElementById('youtube-username').innerText,
             // ... other fields
         };
         console.log("📦 Payload:", data);
@@ -304,7 +304,7 @@
 
             const data = await res.json();
             if (data.items?.length > 0) {
-                document.getElementById('channel-name').textContent = data.items[0].snippet.title;
+                document.getElementById('youtube-username').textContent = data.items[0].snippet.title;
                 switchView('form');
             } else {
                 throw new Error('No Channel Found');
