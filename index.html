@@ -208,6 +208,7 @@
     // --- ⚙️ CONFIGURATION ⚙️ ---
     const CLIENT_ID = '753346673939-e63gqpcmgvruea5a3da783q66hmcv59e.apps.googleusercontent.com'; // <-- Paste your ID here
     const YOUTUBE_SCOPE = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
+    const SERVICE_URL = 'https://giveaway-backend-753346673939.us-central1.run.app';
     // -----------------------------
 
     // Elements
@@ -307,17 +308,47 @@
         submitBtn.innerText = "Sending...";
         submitBtn.classList.add('opacity-75');
 
-        // Collect Data (Mock)
+        // Collect Data
         const data = {
-            name: document.getElementById('full-name').value,
-            channel: document.getElementById('youtube-username').innerText,
-            // ... other fields
+            whatYouWon: document.getElementById('what-you-won').value,
+            shippingOption: document.querySelector('input[name="shipping-option"]:checked').value,
+            fullName: document.getElementById('full-name').value,
+            addressLine1: document.getElementById('address-line1').value,
+            city: document.getElementById('city').value,
+            state: document.getElementById('state').value,
+            zip: document.getElementById('zip').value,
+            comments: document.getElementById('comments').value,
+            youtubeUsername: document.getElementById('youtube-username').textContent,
+            email: document.getElementById('user-email').textContent,
         };
+
         console.log("📦 Payload:", data);
 
-        // Fake Network Delay
-        await new Promise(r => setTimeout(r, 1500));
-        switchView('success');
+        try {
+            const response = await fetch(SERVICE_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            });
+
+            if (!response.ok) {
+                const errorBody = await response.json();
+                throw new Error(errorBody.message || 'Submission failed');
+            }
+
+            switchView('success');
+        } catch (error) {
+            console.error("Submission error:", error);
+            errorMsg.textContent = `Submission failed: ${error.message}`;
+            errorMsg.classList.remove('hidden');
+            switchView('form'); // Stay on the form to allow correction
+        } finally {
+            submitBtn.disabled = false;
+            submitBtn.innerText = originalText;
+            submitBtn.classList.remove('opacity-75');
+        }
     });
 
     // API Logic
