@@ -202,7 +202,7 @@
 <script>
     // --- ⚙️ CONFIGURATION ⚙️ ---
     const CLIENT_ID = '753346673939-e63gqpcmgvruea5a3da783q66hmcv59e.apps.googleusercontent.com'; // <-- Paste your ID here
-    const YOUTUBE_SCOPE = 'https://www.googleapis.com/auth/youtube.readonly';
+    const YOUTUBE_SCOPE = 'https://www.googleapis.com/auth/youtube.readonly https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/userinfo.email';
     // -----------------------------
 
     // Elements
@@ -296,15 +296,25 @@
     async function verifyUser(token) {
         switchView('loading');
         try {
-            const res = await fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
+            // Parallel API calls
+            const [youtubeRes, userInfoRes] = await Promise.all([
+                fetch('https://www.googleapis.com/youtube/v3/channels?part=snippet&mine=true', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                }),
+                fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                })
+            ]);
 
-            if (!res.ok) throw new Error('API Failed');
+            if (!youtubeRes.ok || !userInfoRes.ok) throw new Error('One or more API calls failed');
 
-            const data = await res.json();
-            if (data.items?.length > 0) {
-                document.getElementById('youtube-username').textContent = data.items[0].snippet.title;
+            const youtubeData = await youtubeRes.json();
+            const userInfoData = await userInfoRes.json();
+
+            if (youtubeData.items?.length > 0) {
+                document.getElementById('youtube-username').textContent = youtubeData.items[0].snippet.title;
+                document.getElementById('user-name').textContent = userInfoData.name || 'N/A';
+                document.getElementById('user-email').textContent = userInfoData.email || 'N/A';
                 switchView('form');
             } else {
                 throw new Error('No Channel Found');
@@ -312,7 +322,7 @@
         } catch (err) {
             console.error(err);
             switchView('login');
-            errorMsg.textContent = "Verification failed. Try again.";
+            errorMsg.textContent = "Verification failed. Could not retrieve all user details. Try again.";
             errorMsg.classList.remove('hidden');
         }
     }
