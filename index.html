@@ -125,47 +125,52 @@
                     <input type="text" id="what-you-won" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
                 </div>
 
-                <!-- Local Pickup Checkbox -->
-                <div class="flex items-center">
-                    <input id="local-pickup" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded">
-                    <label for="local-pickup" class="ml-2 block text-sm text-slate-900">
-                        I'd like to pick up my order, please contact me about details (pick-up location is in Utah County, shipping address still required).
-                    </label>
-                </div>
-
-
-
-
-
-                <h2 class="text-xl font-bold text-slate-900 mb-6">Where should we send it?</h2>
-
+                <!-- Shipping Options -->
                 <div>
-                    <label for="full-name" class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
-                    <input type="text" id="full-name" autocomplete="name" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
-                </div>
-
-                <div>
-                    <label for="address-line1" class="block text-sm font-medium text-slate-700 mb-1">Address Line 1</label>
-                    <input type="text" id="address-line1" autocomplete="address-line1" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
-                </div>
-
-                <div>
-                    <label for="city" class="block text-sm font-medium text-slate-700 mb-1">City</label>
-                    <input type="text" id="city" autocomplete="address-level2" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
-                </div>
-
-                <div class="grid grid-cols-2 gap-4">
-                    <div>
-                        <label for="state" class="block text-sm font-medium text-slate-700 mb-1">State</label>
-                        <input type="text" id="state" autocomplete="address-level1" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                    <label class="block text-sm font-medium text-slate-700 mb-2">How would you like to receive your prize?</label>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center">
+                            <input id="shipping-option-shipping" name="shipping-option" type="radio" value="shipping" checked class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300">
+                            <label for="shipping-option-shipping" class="ml-2 block text-sm text-slate-900">Ship my prize</label>
+                        </div>
+                        <div class="flex items-center">
+                            <input id="shipping-option-pickup" name="shipping-option" type="radio" value="pickup" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300">
+                            <label for="shipping-option-pickup" class="ml-2 block text-sm text-slate-900">Local pickup (Utah County)</label>
+                        </div>
                     </div>
+                </div>
+
+                <!-- Shipping Address Fields -->
+                <div id="shipping-address-fields" class="space-y-5">
+                    <h2 class="text-xl font-bold text-slate-900 mb-0">Where should we send it?</h2>
                     <div>
-                        <label for="zip" class="block text-sm font-medium text-slate-700 mb-1">ZIP Code</label>
-                        <input type="text" id="zip" autocomplete="postal-code" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                        <label for="full-name" class="block text-sm font-medium text-slate-700 mb-1">Full Name</label>
+                        <input type="text" id="full-name" autocomplete="name" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="address-line1" class="block text-sm font-medium text-slate-700 mb-1">Address Line 1</label>
+                        <input type="text" id="address-line1" autocomplete="address-line1" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                    </div>
+
+                    <div>
+                        <label for="city" class="block text-sm font-medium text-slate-700 mb-1">City</label>
+                        <input type="text" id="city" autocomplete="address-level2" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label for="state" class="block text-sm font-medium text-slate-700 mb-1">State</label>
+                            <input type="text" id="state" autocomplete="address-level1" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                        </div>
+                        <div>
+                            <label for="zip" class="block text-sm font-medium text-slate-700 mb-1">ZIP Code</label>
+                            <input type="text" id="zip" autocomplete="postal-code" required class="w-full rounded-lg border-slate-300 border px-4 py-2.5 text-slate-900 focus:ring-2 focus:ring-red-500 focus:border-transparent outline-none transition-shadow bg-slate-50 focus:bg-white shadow-sm">
+                        </div>
                     </div>
                 </div>
                 <!-- Shipping Issues Checkbox -->
-                <div class="flex items-center">
+                <div id="shipping-issues-container" class="flex items-center">
                     <input id="shipping-issues" type="checkbox" class="h-4 w-4 text-red-600 focus:ring-red-500 border-gray-300 rounded" required>
                     <label for="shipping-issues" class="ml-2 block text-sm text-slate-900">
                         * I understand that Crispy Stacks is not responsible for lost or damaged mail.
@@ -255,6 +260,29 @@
         }
         // -----------------------
 
+        // --- Shipping Options ---
+        const shippingAddressFields = document.getElementById('shipping-address-fields');
+        const shippingOptionShipping = document.getElementById('shipping-option-shipping');
+        const shippingOptionPickup = document.getElementById('shipping-option-pickup');
+        const shippingIssuesContainer = document.getElementById('shipping-issues-container');
+
+        function toggleShippingFields() {
+            if (shippingOptionShipping.checked) {
+                shippingAddressFields.classList.remove('hidden');
+                shippingIssuesContainer.classList.remove('hidden');
+            } else {
+                shippingAddressFields.classList.add('hidden');
+                shippingIssuesContainer.classList.add('hidden');
+            }
+        }
+
+        shippingOptionShipping.addEventListener('change', toggleShippingFields);
+        shippingOptionPickup.addEventListener('change', toggleShippingFields);
+
+        // Initial check
+        toggleShippingFields();
+        // -----------------------
+
         const checkGoogle = setInterval(() => {
             if (window.google && window.google.accounts) {
                 clearInterval(checkGoogle);
@@ -315,6 +343,7 @@
                 document.getElementById('youtube-username').textContent = youtubeData.items[0].snippet.title;
                 document.getElementById('user-name').textContent = userInfoData.name || 'N/A';
                 document.getElementById('user-email').textContent = userInfoData.email || 'N/A';
+                document.getElementById('full-name').value = userInfoData.name || ''; // Pre-fill name
                 switchView('form');
             } else {
                 throw new Error('No Channel Found');
