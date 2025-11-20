@@ -1,0 +1,12 @@
+# Ignore Dart build artifacts and local configuration
+.dart_tool/
+.packages
+build/
+pubspec.lock
+
+# Ignore IDE-specific files
+.idea/
+*.iml
+
+# Ignore OS-specific files
+.DS_Store

@@ -1,0 +1,28 @@
+# Service Account Key
+dex-tags-1e80efd082ac.json
+/cloud_run_backend/service-account.json # In case the name is changed later
+
+# Dart build artifacts and lock file
+/cloud_run_backend/.dart_tool/
+/cloud_run_backend/pubspec.lock
+
+# IDE specific files
+.idea/
+
+# Other potential build artifacts or logs
+*.log
+*.exe
+*.o
+*.a
+*.so
+*.lo
+*.la
+*.dll
+*.obj
+*.rej
+*.bak
+*.swp
+*~
+.DS_Store
+*.tmp
+*.temp

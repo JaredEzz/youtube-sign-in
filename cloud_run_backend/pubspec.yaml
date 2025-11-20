@@ -1,0 +1,12 @@
+name: giveaway_backend
+description: Secure backend for YouTube Giveaway
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  shelf: ^1.4.0
+  shelf_router: ^1.1.0
+  googleapis: ^11.0.0
+  googleapis_auth: ^1.4.0
+  http: ^1.1.0
+  logging: ^1.2.0
