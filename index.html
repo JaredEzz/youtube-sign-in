@@ -269,14 +269,28 @@
         const shippingOptionShipping = document.getElementById('shipping-option-shipping');
         const shippingOptionPickup = document.getElementById('shipping-option-pickup');
         const shippingIssuesContainer = document.getElementById('shipping-issues-container');
+        const shippingIssuesCheckbox = document.getElementById('shipping-issues');
+
+        const requiredShippingIds = ['full-name', 'address-line1', 'city', 'state', 'zip'];
 
         function toggleShippingFields() {
-            if (shippingOptionShipping.checked) {
+            const isShipping = shippingOptionShipping.checked;
+
+            if (isShipping) {
                 shippingAddressFields.classList.remove('hidden');
                 shippingIssuesContainer.classList.remove('hidden');
             } else {
                 shippingAddressFields.classList.add('hidden');
                 shippingIssuesContainer.classList.add('hidden');
+            }
+
+            // Toggle required attributes
+            requiredShippingIds.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) el.required = isShipping;
+            });
+            if (shippingIssuesCheckbox) {
+                shippingIssuesCheckbox.required = isShipping;
             }
         }
 
