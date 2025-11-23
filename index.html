@@ -312,17 +312,19 @@
         submitBtn.classList.add('opacity-75');
 
         // Collect Data
+        const shippingOption = document.querySelector('input[name="shipping-option"]:checked').value;
+        const shippingIssues = document.getElementById('shipping-issues').checked;
+
         const data = {
-            whatYouWon: document.getElementById('what-you-won').value,
-            shippingOption: document.querySelector('input[name="shipping-option"]:checked').value,
-            fullName: document.getElementById('full-name').value,
-            addressLine1: document.getElementById('address-line1').value,
-            city: document.getElementById('city').value,
-            state: document.getElementById('state').value,
-            zip: document.getElementById('zip').value,
-            comments: document.getElementById('comments').value,
-            youtubeUsername: document.getElementById('youtube-username').textContent,
-            email: document.getElementById('user-email').textContent,
+            "what-you-won": document.getElementById('what-you-won').value,
+            "full-name": document.getElementById('full-name').value,
+            "address-line1": document.getElementById('address-line1').value,
+            "city": document.getElementById('city').value,
+            "state": document.getElementById('state').value,
+            "zip": document.getElementById('zip').value,
+            "local-pickup": (shippingOption === 'pickup').toString(),
+            "shipping-issues": shippingIssues.toString(),
+            "comments": document.getElementById('comments').value
         };
 
         console.log("📦 Payload:", data);
