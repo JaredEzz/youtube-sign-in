@@ -75,7 +75,7 @@ Future<Map<String, String>?> _verifyUserIdentity(String accessToken) async {
   final authClient = authenticatedClient(
       http.Client(),
       AccessCredentials(
-        AccessToken('Bearer', accessToken, DateTime.now().add(Duration(hours: 1))),
+        AccessToken('Bearer', accessToken, DateTime.now().toUtc().add(Duration(hours: 1))),
         null, // Refresh token not needed for this
         [],
       ));

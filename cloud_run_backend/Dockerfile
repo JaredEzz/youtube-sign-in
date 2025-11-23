@@ -16,4 +16,5 @@ COPY --from=build /app/dex-tags-1e80efd082ac.json /app/dex-tags-1e80efd082ac.jso
 
 # Cloud Run expects the app to listen on port 8080
 ENV PORT=8080
+WORKDIR /app
 CMD ["/app/bin/server"]
